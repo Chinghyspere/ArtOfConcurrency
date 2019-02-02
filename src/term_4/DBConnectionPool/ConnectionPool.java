@@ -37,6 +37,7 @@ public class ConnectionPool {
             }else {
                 long future = System.currentTimeMillis() + mills;
                 long remaining = mills;
+                //计时器，响应时间到了就推出循环
                 while(pool.isEmpty() && remaining>0){
                     pool.wait(remaining);
                     remaining = future - System.currentTimeMillis();

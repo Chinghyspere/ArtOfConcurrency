@@ -18,18 +18,14 @@ public class ConnectionDriver {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if(method.getName().equals("commit")){
-                TimeUnit.MILLISECONDS.sleep(100);
+                /*System.out.println(method.getName()+"is begin");*/
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
             return null;
         }
+    }
     public static final Connection createConnection(){
-           return (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader()
-                   ,new Class<?>[]{Connection.class},new ConnectionHandler());
-    }
-
-    }
-
-    public static final Connection createConnection() {
-        return null;
+        return (Connection) Proxy.newProxyInstance(Connection.class.getClassLoader()
+                ,new Class<?>[]{Connection.class},new ConnectionHandler());
     }
 }
